@@ -1,0 +1,356 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" style="position: fixed; width: 100%; overflow: hidden; ">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=1200">
+    <title>密室逃脱 - 题目 - FAIOJ</title>
+    <link href="https://cdn.jsdelivr.net/gh/novaELLIAS/CDN_for_ND@2.3.8/img/faioj_favicon.ico" rel="shortcut icon">
+    <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/cdnjs/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/self/tomorrow.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/self/math.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/self/style.css?20181212" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/cdnjs/morris.js/0.5.1/morris.css" rel="stylesheet">
+    
+      <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/google-fonts/fira-mono.css" rel="stylesheet">
+      <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/google-fonts/lato.css" rel="stylesheet">
+      <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/google-fonts/open-sans.css" rel="stylesheet">
+      <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/google-fonts/exo-2.css" rel="stylesheet">
+    
+    <script data-cfasync="false" src="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/cdnjs/jquery/3.3.1/jquery.min.js"></script>
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-174192270-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+</head>
+<body style="position: relative; margin-top: 49px; height: calc(100% - 49px); overflow-y: overlay; ">
+    <div class="ui fixed borderless menu" style="position: fixed; height: 49px; ">
+        <div class="ui container">
+            
+            <a class="header item" href="/"><img src="https://cdn.jsdelivr.net/gh/novaELLIAS/CDN_for_ND@2.3.8/img/faioj_favicon.ico" style="width: auto; height: 35px; "></a>
+            
+            <a class="item" href="/"><i class="home icon"></i> 首页</a>
+            <a class="item active" href="/problems"><i class="list icon"></i> 题库</a>
+            <a class="item" href="/contests"><i class="calendar icon"></i> 比赛</a>
+            <a class="item" href="/submissions"><i class="tasks icon"></i> 评测</a>
+            <a class="item" href="/ranklist"><i class="signal icon"></i> 排名</a>
+            <a class="item" href="/discussion/global"><i class="comments icon"></i> 讨论</a>
+            <a class="item" href="/help"><i class="help circle icon"></i> 帮助</a>
+            
+            <div class="right menu">
+              
+                <div class="item">
+                    <a class="ui button" style="margin-right: 0.5em; " href="/login?url=%2Fproblem%2F2493">
+                        登录
+                    </a>
+                    <a class="ui primary button" href="/sign_up?url=%2Fproblem%2F2493">
+                        注册
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 28px; ">
+    <div class="ui main container">
+
+<style>
+#languages-menu::-webkit-scrollbar, #testcase-menu::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+#languages-menu .item::after, #testcase-menu .item::after {
+    display: none;
+}
+</style>
+
+<script>
+  window.pathLib = "https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/cdnjs/";
+  window.pathSelfLib = "https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/self/";
+
+  var originalConsoleWarn = console.warn;
+  console.warn = function (message) {
+    if (message.startsWith('Duplicate definition of module')) return;
+    originalConsoleWarn.apply(console, arguments);
+  };
+</script>
+
+<!-- Load monaco-editor -->
+<script src="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/cdnjs/monaco-editor/0.18.1/min/vs/loader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/self/monaco-editor.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/self/monaco-editor.css">
+
+
+
+
+<div class="ui center aligned grid">
+    <div class="row">
+      <h1 class="ui header">
+        
+          #2493. 密室逃脱
+        
+      </h1>
+    </div>
+    
+      <div class="row" style="margin-top: -15px">
+          <span class="ui label">内存限制：512 MiB</span>
+          <span class="ui label">时间限制：1000 ms</span>
+          
+            <span class="ui label">标准输入输出</span>
+          
+      </div>
+    
+    
+      <div class="row" style="margin-top: -23px">
+          <span class="ui label">题目类型：传统</span>
+          <span class="ui label">评测方式：文本比较</span>
+      </div>
+    
+    
+        <div class="row" style="margin-top: -23px">
+            <span class="ui label">上传者：
+            
+              <a href="/user/10">刘升</a>
+            
+            </span>
+            
+        </div>
+    
+</div>
+<div class="ui grid">
+  <div class="row">
+    <div class="column">
+      <div class="ui buttons">
+        
+          
+            <a class="small ui primary button" href="#submit_code">提交</a>
+          
+          <a class="small ui positive button" href="/submissions?problem_id=2493">提交记录</a>
+          <a class="small ui orange button" href="/problem/2493/statistics/fastest">统计</a>
+          <a class="small ui yellow button" href="/problem/2493/testdata">测试数据</a>
+          
+          <a class="small ui brown button" href="/discussion/problem/2493" style="position: relative; ">
+            讨论
+            
+          </a>
+        
+      </div>
+      
+        <div class="ui buttons right floated">
+          
+          
+        </div>
+      
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="column">
+      <h4 class="ui top attached block header">题目描述</h4>
+      <div class="ui bottom attached segment font-content"><div style="position: relative; overflow: hidden; "><p>小R是一个寻宝迷，这一次他来到了一个密室。经过大量的准备工作，小R摸清了密室的情况：整个密室共有N个房间，在这些房间之间有M条双向的道路，而通过这些双向道路的时间是可以改变的。具体地说，密室中的每条道路都有P种形态，在第i种形态下通过它的时间是Ti。改变这些道路形态的方式就是在任意一个房间中找到一对特殊的按钮，分别为UP按钮和DOWN按钮，假设当前所有道路处于第m种形态，那么在按下UP按钮后它们都会变成m+1种形态（若m=P，则会变成第1种形态），在按下DOWN按钮后它们都会变成第m-1种形态（若m=1，这会变成第P种形态）。如果小R在第i个房间中共按了C次按钮，那么他就需要花费C*Ai的时间。
+现在小R来到了1号房间，并找到了他想要的宝藏，可是当他取下宝藏的时候，却发现整个密室开始崩塌，小R需要你告诉他赶完N号房间的出口最小需要多少时间。</p>
+</div></div>
+    </div>
+  </div>
+  
+  
+  <div class="row">
+    <div class="column">
+        <h4 class="ui top attached block header">输入格式</h4>
+        <div class="ui bottom attached segment font-content"><div style="position: relative; overflow: hidden; "><p>第一行三个整数N，M，P
+第二行N个整数，A1到An
+接下来M行，每行有P+2个正整数，分别为U，V，T1，....Tp。其中U，V表示U，V直接有一条双向道路。
+注意，在两个房间之间可能有多条道路。</p>
+</div></div>
+    </div>
+  </div>
+  
+  
+    <div class="row">
+        <div class="column">
+          <h4 class="ui top attached block header">输出格式</h4>
+          <div class="ui bottom attached segment font-content"><div style="position: relative; overflow: hidden; "><p>一个数，表示小R逃离的最短时间。
+开始的时候所有道路处于第1种形态，并且数据保证存在通向N点的道路</p>
+</div></div>
+        </div>
+    </div>
+  
+  
+    <div class="row">
+        <div class="column">
+          <h4 class="ui top attached block header">样例</h4>
+          <div class="ui bottom attached segment font-content"><div style="position: relative; overflow: hidden; "><div class="ui existing segment"><pre style="margin-top: 0; margin-bottom: 0; "><code>Sample Input
+4 4 2
+40 50 5 5
+1 3 10 5
+1 2 4 3
+2 4 100 7
+3 4 40 30
+</code></pre></div>
+<div class="ui existing segment"><pre style="margin-top: 0; margin-bottom: 0; "><code>Sample Output
+30
+</code></pre></div>
+</div></div>
+        </div>
+    </div>
+  
+  
+    <div class="row">
+        <div class="column">
+          <h4 class="ui top attached block header">数据范围与提示</h4>
+          <div class="ui bottom attached segment font-content"><div style="position: relative; overflow: hidden; "><p>【样例说明】
+先到3号房间，花费10的时间，按下按钮，花费5的时间，回到1号房间，花费5的时间再到2号房间，花费3的时间，最后来到4号点，花费7的时间。共10+5+5+3+7=30的时间。
+【数据规模】
+100%的数据满足：N&lt;=1000, M&lt;=5000, P&lt;=100, Ai,Ti&lt;=100000</p>
+</div></div>
+        </div>
+    </div>
+  
+  
+    <div class="row">
+      <div class="column">
+        <h4 class="ui block header" id="show_tag_title_div" style="margin-bottom: 0; margin-left: -1px; margin-right: -1px; "><a href="#" id="show_tag_button" style="color: #000; ">显示分类标签</a></h4>
+        <div class="ui bottom attached segment" style="display: none; " id="show_tag_div">
+          
+            <a href="/problems/tag/44" class="ui medium pink label">
+              SPFA
+            </a>
+          
+            <a href="/problems/tag/105" class="ui medium pink label">
+              分层图
+            </a>
+          
+        </div>
+      </div>
+    </div>
+    <script>
+    $(function () {
+      $('#show_tag_button').click(function (e) {
+        e.preventDefault();
+        $('#show_tag_title_div').addClass('top');
+        $('#show_tag_title_div').addClass('top attached');
+        $('#show_tag_title_div').text('分类标签');
+        $('#show_tag_div').css('display', '');
+      })
+    });
+    </script>
+  
+    
+    
+    
+    <div class="row">
+        <div class="column">
+          
+          <form action="/problem/2493/submit?contest_id=" method="post" onsubmit="return submit_code()" id="submit_code" enctype="multipart/form-data">
+            
+              <input name="language" type="hidden" id="form">
+              <input name="code" type="hidden">
+              <div class="ui grid">
+                <div class="four wide column" style="margin-right: -25px; ">
+                  <div class="ui attached vertical fluid pointing menu" id="languages-menu" style="height: 370px; overflow-y: scroll; overflow-x: hidden; ">
+                    
+                    
+                      <a style="border-radius: 0; " class="item active" data-value="cpp-g++-9.3.0" data-mode="cpp">
+                        C++ (NOI2.0)
+                        <div class="ui right floated" style="opacity: 0.4; margin-top: 8px; font-size: 0.7em; ">GCC 9.3.0</div>
+                      </a>
+                    
+                  </div>
+                </div>
+                <div class="twelve wide stretched column" style="position: relative; padding-left: 0; margin-left: calc(-1rem - 1px); width: calc(75% + 1rem + 13px) !important; ">
+                  <div id="editor" style="position: absolute; width: 100%; height: calc(100% - 28px); border: 1px solid #D4D4D5; overflow: hidden; " class="editor" contenteditable>
+                    
+<div class="ui active medium text loader">编辑器加载中 …</div>
+
+                  </div>
+                </div>
+                <div class="ui form" style="width: 100%; ">
+                  <div class="inline fields" style="width: 100%; ">
+                    <div class="field" style="margin: 0 auto; ">
+                      <label for="answer">或者，上传代码文件</label>
+                      <input type="file" id="answer" name="answer">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="ui center aligned vertical segment" style="padding-bottom: 0; ">
+                <button type="submit" class="ui labeled icon button"><i class="ui edit icon"></i>提交</button>
+              </div>
+            
+          </form>
+        </div>
+    </div>
+    
+</div>
+
+
+<script type="text/javascript">
+  var editor;
+  window.onEditorLoaded(function () {
+    var editorElement = document.getElementById('editor');
+    var content = '';
+    
+    editor = window.createCodeEditor(editorElement, $('#languages-menu .item.active').data('mode'), content);
+    window.editor = editor;
+  });
+
+  var lastSubmitted = '';
+
+  function submit_code() {
+    if (!$('#submit_code input[name=answer]').val().trim() && !editor.getValue().trim()) return false;
+    $('#submit_code input[name=language]').val($('#languages-menu .item.active').data('value'));
+    lastSubmitted = editor.getValue();
+    $('#submit_code input[name=code]').val(editor.getValue());
+    return true;
+  }
+
+  $('#languages-menu')[0].scrollTop = $('#languages-menu .active')[0].offsetTop - $('#languages-menu')[0].firstElementChild.offsetTop;
+
+  $(function () {
+    $('#languages-menu .item').click(function() {
+      $(this)
+        .addClass('active')
+        .closest('.ui.menu')
+        .find('.item')
+          .not($(this))
+          .removeClass('active')
+      ;
+      monaco.editor.setModelLanguage(editor.getModel(), $(this).data('mode'));
+    });
+  });
+</script>
+
+
+</div>
+    <div class="ui vertical footer segment" style="margin-top: 15px; ">
+      <div class="ui center aligned container">
+        <span style="color: #999;">FAIOJ Powered by <a href="https://github.com/FaiOJ/syzoj" target="_blank">SYZOJ</a>.</span>
+        <br>
+        <img src="https://cdn.jsdelivr.net/gh/novaELLIAS/CDN_for_ND/img/cn_icp.png" style="width:18px;height:18px;margin-bottom:-3px" alt="MOE ICP">
+        <a href="http://www.beian.miit.gov.cn/" target="_blank"> 辽ICP备20009666号-1</a>
+        丨
+        <img src="https://cdn.jsdelivr.net/gh/novaELLIAS/CDN_for_ND/img/moeicp.png" style="width:18px;height:18px;margin-bottom:-3px" alt="MOE ICP">
+<a href="https://icp.gov.moe" target="_blank">MOE ICP </a><a href="https://icp.gov.moe/?keyword=20201096" target="_blank"> 20201096号</a>
+      </div>
+    </div>
+</div>
+<script data-cfasync="false" src="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/cdnjs/semantic-ui/2.4.1/semantic.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/cdnjs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/self/script.js?20170710"></script>
+</body>
+</html>
+

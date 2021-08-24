@@ -1,0 +1,1620 @@
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" style="position: fixed; width: 100%; overflow: hidden; ">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=1200">
+    <title>题库 - FAIOJ</title>
+    <link href="https://cdn.jsdelivr.net/gh/novaELLIAS/CDN_for_ND@2.3.8/img/faioj_favicon.ico" rel="shortcut icon">
+    <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/cdnjs/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/self/tomorrow.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/self/math.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/self/style.css?20181212" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/cdnjs/morris.js/0.5.1/morris.css" rel="stylesheet">
+    
+      <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/google-fonts/fira-mono.css" rel="stylesheet">
+      <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/google-fonts/lato.css" rel="stylesheet">
+      <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/google-fonts/open-sans.css" rel="stylesheet">
+      <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/google-fonts/exo-2.css" rel="stylesheet">
+    
+    <script data-cfasync="false" src="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/cdnjs/jquery/3.3.1/jquery.min.js"></script>
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-174192270-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+</head>
+<body style="position: relative; margin-top: 49px; height: calc(100% - 49px); overflow-y: overlay; ">
+    <div class="ui fixed borderless menu" style="position: fixed; height: 49px; ">
+        <div class="ui container">
+            
+            <a class="header item" href="/"><img src="https://cdn.jsdelivr.net/gh/novaELLIAS/CDN_for_ND@2.3.8/img/faioj_favicon.ico" style="width: auto; height: 35px; "></a>
+            
+            <a class="item" href="/"><i class="home icon"></i> 首页</a>
+            <a class="item active" href="/problems"><i class="list icon"></i> 题库</a>
+            <a class="item" href="/contests"><i class="calendar icon"></i> 比赛</a>
+            <a class="item" href="/submissions"><i class="tasks icon"></i> 评测</a>
+            <a class="item" href="/ranklist"><i class="signal icon"></i> 排名</a>
+            <a class="item" href="/discussion/global"><i class="comments icon"></i> 讨论</a>
+            <a class="item" href="/help"><i class="help circle icon"></i> 帮助</a>
+            
+            <div class="right menu">
+              
+                <div class="item">
+                    <a class="ui button" style="margin-right: 0.5em; " href="/login?url=%2Fproblems%3Fpage%3D3%26sort%3Dac_num%26order%3Ddesc">
+                        登录
+                    </a>
+                    <a class="ui primary button" href="/sign_up?url=%2Fproblems%3Fpage%3D3%26sort%3Dac_num%26order%3Ddesc">
+                        注册
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 28px; ">
+    <div class="ui main container">
+
+
+<div class="padding">
+  <div class="ui grid" style="margin-bottom: 10px; ">
+    <div class="row" style="white-space: nowrap; ">
+      <div class="seven wide column">
+        
+          <form action="/problems/search" method="get">
+            <div class="ui search" style="width: 280px; height: 28px; margin-top: -5.3px; ">
+              <div class="ui left icon input" style="width: 100%; ">
+                <input class="prompt" style="width: 100%; " type="text" value="" placeholder="ID / 题目名 …" name="keyword">
+                <i class="search icon"></i>
+              </div>
+              <div class="results" style="width: 100%; "></div>
+            </div>
+          </form>
+        
+      </div>
+      <div class="nine wide right aligned column">
+        <div class="ui toggle checkbox" id="show_tag">
+          <style id="show_tag_style"></style>
+          <script data-cfasync="false">
+          if (localStorage.getItem('show_tag') === '1') {
+            document.write('<input type="checkbox" checked>');
+            document.getElementById('show_tag_style').innerHTML = '.show_tag_controled { white-space: nowrap; overflow: hidden; }';
+          } else {
+            document.write('<input type="checkbox">');
+            document.getElementById('show_tag_style').innerHTML = '.show_tag_controled { width: 0; white-space: nowrap; overflow: hidden; }';
+          }
+          </script>
+
+          <script>
+          $(function () {
+            $('#show_tag').checkbox('setting', 'onChange', function () {
+              let checked = $('#show_tag').checkbox('is checked');
+              localStorage.setItem('show_tag', checked ? '1' : '0');
+              if (checked) {
+                document.getElementById('show_tag_style').innerHTML = '.show_tag_controled { white-space: nowrap; overflow: hidden; }';
+              } else {
+                document.getElementById('show_tag_style').innerHTML = '.show_tag_controled { width: 0; white-space: nowrap; overflow: hidden; }';
+              }
+            });
+          });
+          </script>
+          <label>显示分类标签</label>
+        </div>
+        <div style="margin-left: 10px; display: inline-block; ">
+          
+          <div style="margin-left: 10px; " class="ui mini buttons">
+            <div class="ui labeled icon mini dropdown button" id="add_problem_dropdown"><i class="plus icon"></i> 添加题目
+            <div class="menu">
+              <a class="item" href="/problem/0/edit"><i class="file icon"></i> 新建题目</a>
+              <a class="item" href="/problem/0/import"><i class="cloud download icon"></i> 导入题目</a>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div style="margin-bottom: 30px; ">
+    
+<div style="text-align: center; ">
+  <div class="ui pagination menu" style="box-shadow: none; ">
+    <a class=" icon item" href="/problems?page=2&amp;sort=ac_num&amp;order=desc" id="page_prev">
+      <i class="left chevron icon"></i>
+    </a>
+    
+
+    
+    <a class="item" href="/problems?page=1&amp;sort=ac_num&amp;order=desc">1</a>
+    
+
+    
+
+    
+      <a class="item" href="/problems?page=2&amp;sort=ac_num&amp;order=desc">2</a>
+    
+
+    <a class="active item" href="/problems?page=3&amp;sort=ac_num&amp;order=desc">3</a>
+
+    
+      <a class="item" href="/problems?page=4&amp;sort=ac_num&amp;order=desc">4</a>
+    
+      <a class="item" href="/problems?page=5&amp;sort=ac_num&amp;order=desc">5</a>
+    
+      <a class="item" href="/problems?page=6&amp;sort=ac_num&amp;order=desc">6</a>
+    
+      <a class="item" href="/problems?page=7&amp;sort=ac_num&amp;order=desc">7</a>
+    
+      <a class="item" href="/problems?page=8&amp;sort=ac_num&amp;order=desc">8</a>
+    
+      <a class="item" href="/problems?page=9&amp;sort=ac_num&amp;order=desc">9</a>
+    
+      <a class="item" href="/problems?page=10&amp;sort=ac_num&amp;order=desc">10</a>
+    
+      <a class="item" href="/problems?page=11&amp;sort=ac_num&amp;order=desc">11</a>
+    
+      <a class="item" href="/problems?page=12&amp;sort=ac_num&amp;order=desc">12</a>
+    
+      <a class="item" href="/problems?page=13&amp;sort=ac_num&amp;order=desc">13</a>
+    
+      <a class="item" href="/problems?page=14&amp;sort=ac_num&amp;order=desc">14</a>
+    
+      <a class="item" href="/problems?page=15&amp;sort=ac_num&amp;order=desc">15</a>
+    
+
+    
+      <div class="disabled item">...</div>
+    
+
+    
+    <a class="item" href="/problems?page=21&amp;sort=ac_num&amp;order=desc">21</a>
+    
+
+    <a class=" icon item" href="/problems?page=4&amp;sort=ac_num&amp;order=desc" id="page_next">
+      <i class="right chevron icon"></i>
+    </a>
+  </div>
+</div>
+
+
+  </div>
+  <table class="ui very basic center aligned table">
+    <thead>
+      <tr>
+        
+        <th class="one wide"><a class="black-link" href="/problems?page=3&sort=id&order=asc">编号</a></th>
+        <th class="left aligned"><a class="black-link" href="/problems?page=3&sort=title&order=asc">题目名称</a></th>
+        <th class="one wide"><a class="black-link" href="/problems?page=3&sort=ac_num&order=asc">通过<i class="angle down icon"></i></a></th>
+        <th class="one wide"><a class="black-link" href="/problems?page=3&sort=submit_num&order=desc">提交</a></th>
+        <th class="one wide">通过率</th>
+      </tr>
+    </thead>
+    <tbody>
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>130</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/130">数列分块入门 3
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/9" class="ui tiny blue label">
+                      模板
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/23" class="ui tiny purple label">
+                      分块
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>5</td>
+            <td>80.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>132</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/132">数列分块入门 5
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/9" class="ui tiny blue label">
+                      模板
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/23" class="ui tiny purple label">
+                      分块
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>5</td>
+            <td>80.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>2181</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/2181">「SDOI2009」HH的项链
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/19" class="ui tiny pink label">
+                      树状数组
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/28" class="ui tiny purple label">
+                      莫队
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>4</td>
+            <td>100.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>30091</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/30091">「一本通 3.5 例 1」受欢迎的牛
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/14" class="ui tiny pink label">
+                      图论
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/97" class="ui tiny pink label">
+                      强连通分量
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>5</td>
+            <td>80.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>1167</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/1167">「SCOI2005」互不侵犯
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/10" class="ui tiny pink label">
+                      DP
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/45" class="ui tiny pink label">
+                      状态压缩
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>5</td>
+            <td>80.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>10132</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/10132">「NOIP2013」货车运输
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/7" class="ui tiny pink label">
+                      倍增
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/112" class="ui tiny pink label">
+                      LCA
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/121" class="ui tiny pink label">
+                      Kruskal
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>6</td>
+            <td>66.67%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>30104</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/30104">「一本通 3.6 练习 5」Blockade
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/14" class="ui tiny pink label">
+                      图论
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/98" class="ui tiny purple label">
+                      双连通分量
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>4</td>
+            <td>100.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>410</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/410">状压DP
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/9" class="ui tiny blue label">
+                      模板
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/72" class="ui tiny pink label">
+                      状压DP
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>6</td>
+            <td>66.67%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>1440</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/1440">天天写作业
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/120" class="ui tiny pink label">
+                      埃式筛法
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>11</td>
+            <td>36.36%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>21409</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/21409">「BJOI2014」大融合
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/30" class="ui tiny purple label">
+                      LCT
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>4</td>
+            <td>100.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>14003</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/14003">「NOI模拟赛 Day2」飞行计划
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/87" class="ui tiny blue label">
+                      NOI模拟
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/46" class="ui tiny pink label">
+                      最短路
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>4</td>
+            <td>100.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>10164</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/10164">「NOIP2016」蚯蚓
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+              </div>
+            </td>
+            <td>4</td>
+            <td>8</td>
+            <td>50.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>14004</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/14004">「NOI模拟赛 Day2」割
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/87" class="ui tiny blue label">
+                      NOI模拟
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/36" class="ui tiny purple label">
+                      线性基
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>4</td>
+            <td>100.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>3000</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/3000">雨天的尾巴
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/17" class="ui tiny pink label">
+                      差分
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/20" class="ui tiny pink label">
+                      线段树
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/67" class="ui tiny purple label">
+                      线段树合并
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>4</td>
+            <td>100.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>10170</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/10170">「NOIP2017」小凯的疑惑
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/8" class="ui tiny pink label">
+                      数论
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>5</td>
+            <td>80.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>3016</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/3016">Journeys
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/46" class="ui tiny pink label">
+                      最短路
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>5</td>
+            <td>80.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>14027</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/14027">「NOI模拟赛 Day10」飞侠
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/87" class="ui tiny blue label">
+                      NOI模拟
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>4</td>
+            <td>100.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>208</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/208">卢卡斯定理
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/9" class="ui tiny blue label">
+                      模板
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/4" class="ui tiny pink label">
+                      组合数学
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>8</td>
+            <td>50.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>30162</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/30162">「一本通 5.2 练习 5」骑士
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/39" class="ui tiny pink label">
+                      树形DP
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>5</td>
+            <td>80.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>10197</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/10197">「CSP-J 2019」公交换乘
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+              </div>
+            </td>
+            <td>4</td>
+            <td>53</td>
+            <td>7.55%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>1499</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/1499">快速幂取模（加强版）
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+              </div>
+            </td>
+            <td>4</td>
+            <td>7</td>
+            <td>57.14%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>30175</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/30175">「一本通 5.5 例 1」滑动窗口
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/10" class="ui tiny pink label">
+                      DP
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/117" class="ui tiny pink label">
+                      单调队列
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>4</td>
+            <td>100.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>233</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/233">多项式多点求值
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/70" class="ui tiny black label">
+                      毒瘤
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/9" class="ui tiny blue label">
+                      模板
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/2" class="ui tiny purple label">
+                      FFT
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>4</td>
+            <td>100.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>3050</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/3050">区间最大子段和
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/20" class="ui tiny pink label">
+                      线段树
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>16</td>
+            <td>25.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>3051</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/3051">拉拉队排练
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+              </div>
+            </td>
+            <td>4</td>
+            <td>6</td>
+            <td>66.67%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>1263</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/1263">「NOIP2005T1」谁拿了最多奖学金
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/71" class="ui tiny pink label">
+                      模拟
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>4</td>
+            <td>100.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>247</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/247">最小圆覆盖
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/9" class="ui tiny blue label">
+                      模板
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/80" class="ui tiny purple label">
+                      计算几何
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>4</td>
+            <td>100.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>30199</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/30199">「一本通 6.2 练习 2」轻拍牛头
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/8" class="ui tiny pink label">
+                      数论
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>7</td>
+            <td>57.14%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>250</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/250">三维凸包
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/9" class="ui tiny blue label">
+                      模板
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/80" class="ui tiny purple label">
+                      计算几何
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>4</td>
+            <td>100.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>506</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/506">「SDOI2016」生成魔咒
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/9" class="ui tiny blue label">
+                      模板
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/41" class="ui tiny blue label">
+                      省选真题
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/63" class="ui tiny pink label">
+                      字符串
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/62" class="ui tiny purple label">
+                      后缀自动机
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>4</td>
+            <td>4</td>
+            <td>100.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>21508</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/21508">「HEOI2015」小 Z 的房间
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/88" class="ui tiny purple label">
+                      矩阵树定理
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>3</td>
+            <td>3</td>
+            <td>100.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>1541</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/1541">大规模逆序对问题
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/19" class="ui tiny pink label">
+                      树状数组
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>3</td>
+            <td>4</td>
+            <td>75.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>15</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/15">高精度减法
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/9" class="ui tiny blue label">
+                      模板
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/27" class="ui tiny pink label">
+                      高精度
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>3</td>
+            <td>6</td>
+            <td>50.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>16</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/16">高精度乘法
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/9" class="ui tiny blue label">
+                      模板
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/27" class="ui tiny pink label">
+                      高精度
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>3</td>
+            <td>9</td>
+            <td>33.33%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>18</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/18">高精除高精
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/9" class="ui tiny blue label">
+                      模板
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/27" class="ui tiny pink label">
+                      高精度
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>3</td>
+            <td>3</td>
+            <td>100.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>11026</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/11026">地下城商店
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+              </div>
+            </td>
+            <td>3</td>
+            <td>7</td>
+            <td>42.86%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>1563</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/1563">最优乘车
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+              </div>
+            </td>
+            <td>3</td>
+            <td>28</td>
+            <td>10.71%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>11035</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/11035">「Corn#8」成绩统计
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/19" class="ui tiny pink label">
+                      树状数组
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>3</td>
+            <td>3</td>
+            <td>100.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>11036</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/11036">「Corn#6」坏弹
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+              </div>
+            </td>
+            <td>3</td>
+            <td>5</td>
+            <td>60.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>1053</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/1053"> 香甜的黄油
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/46" class="ui tiny pink label">
+                      最短路
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>3</td>
+            <td>4</td>
+            <td>75.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>1054</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/1054">骑马修栅栏
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/42" class="ui tiny pink label">
+                      欧拉路
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>3</td>
+            <td>4</td>
+            <td>75.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>11040</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/11040">「Corn#10」koishi的冒险
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+              </div>
+            </td>
+            <td>3</td>
+            <td>4</td>
+            <td>75.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>2339</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/2339">「NOI2002」聪明的打字员
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/79" class="ui tiny pink label">
+                      BFS
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>3</td>
+            <td>3</td>
+            <td>100.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>1060</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/1060">美国血统
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/129" class="ui tiny pink label">
+                      二叉树
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>3</td>
+            <td>3</td>
+            <td>100.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>21800</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/21800">「SDOI2018」战略游戏
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/70" class="ui tiny black label">
+                      毒瘤
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/41" class="ui tiny blue label">
+                      省选真题
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/75" class="ui tiny purple label">
+                      圆方树
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/76" class="ui tiny purple label">
+                      虚树
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>3</td>
+            <td>3</td>
+            <td>100.00%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>11049</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/11049">「Corn#12」滚雪球
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+              </div>
+            </td>
+            <td>3</td>
+            <td>13</td>
+            <td>23.08%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>11050</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/11050">「Corn#12」梦回高中
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+              </div>
+            </td>
+            <td>3</td>
+            <td>11</td>
+            <td>27.27%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>11051</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/11051">「Corn#12」每日长跑
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+              </div>
+            </td>
+            <td>3</td>
+            <td>11</td>
+            <td>27.27%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>11052</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/11052">「Corn#12」迟到危机
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+              </div>
+            </td>
+            <td>3</td>
+            <td>9</td>
+            <td>33.33%</td>
+        </tr>
+        
+    
+        
+        <tr style="height: 44px; ">
+            
+            <td><b>301</b></td>
+            <td class="left aligned">
+              <a style="vertical-align: middle; " href="/problem/301">最小树形图
+                
+              </a>
+              <div class="show_tag_controled" style="float: right; ">
+                
+                  <span class="ui header">
+                    <a href="/problems/tag/9" class="ui tiny blue label">
+                      模板
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/14" class="ui tiny pink label">
+                      图论
+                    </a>
+                  </span>
+                  
+                  <span class="ui header">
+                    <a href="/problems/tag/92" class="ui tiny purple label">
+                      最小树形图
+                    </a>
+                  </span>
+                  
+              </div>
+            </td>
+            <td>3</td>
+            <td>3</td>
+            <td>100.00%</td>
+        </tr>
+        
+    
+    </tbody>
+  </table><br>
+  
+<div style="text-align: center; ">
+  <div class="ui pagination menu" style="box-shadow: none; ">
+    <a class=" icon item" href="/problems?page=2&amp;sort=ac_num&amp;order=desc" id="page_prev">
+      <i class="left chevron icon"></i>
+    </a>
+    
+
+    
+    <a class="item" href="/problems?page=1&amp;sort=ac_num&amp;order=desc">1</a>
+    
+
+    
+
+    
+      <a class="item" href="/problems?page=2&amp;sort=ac_num&amp;order=desc">2</a>
+    
+
+    <a class="active item" href="/problems?page=3&amp;sort=ac_num&amp;order=desc">3</a>
+
+    
+      <a class="item" href="/problems?page=4&amp;sort=ac_num&amp;order=desc">4</a>
+    
+      <a class="item" href="/problems?page=5&amp;sort=ac_num&amp;order=desc">5</a>
+    
+      <a class="item" href="/problems?page=6&amp;sort=ac_num&amp;order=desc">6</a>
+    
+      <a class="item" href="/problems?page=7&amp;sort=ac_num&amp;order=desc">7</a>
+    
+      <a class="item" href="/problems?page=8&amp;sort=ac_num&amp;order=desc">8</a>
+    
+      <a class="item" href="/problems?page=9&amp;sort=ac_num&amp;order=desc">9</a>
+    
+      <a class="item" href="/problems?page=10&amp;sort=ac_num&amp;order=desc">10</a>
+    
+      <a class="item" href="/problems?page=11&amp;sort=ac_num&amp;order=desc">11</a>
+    
+      <a class="item" href="/problems?page=12&amp;sort=ac_num&amp;order=desc">12</a>
+    
+      <a class="item" href="/problems?page=13&amp;sort=ac_num&amp;order=desc">13</a>
+    
+      <a class="item" href="/problems?page=14&amp;sort=ac_num&amp;order=desc">14</a>
+    
+      <a class="item" href="/problems?page=15&amp;sort=ac_num&amp;order=desc">15</a>
+    
+
+    
+      <div class="disabled item">...</div>
+    
+
+    
+    <a class="item" href="/problems?page=21&amp;sort=ac_num&amp;order=desc">21</a>
+    
+
+    <a class=" icon item" href="/problems?page=4&amp;sort=ac_num&amp;order=desc" id="page_next">
+      <i class="right chevron icon"></i>
+    </a>
+  </div>
+</div>
+
+
+  
+<script>
+document.addEventListener('keydown', function (event) {
+  if (event.keyCode === 39) document.getElementById('page_next').click();
+  else if (event.keyCode === 37) document.getElementById('page_prev').click();
+});
+
+$(function () {
+  $('#add_problem_dropdown').dropdown();
+});
+</script>
+<script>
+$(function () {
+  $('.ui.search').search({
+    debug: true,
+    apiSettings: {
+      url: '/api/v2/search/problems/{query}',
+      cache: false
+    },
+    fields: {
+      title: 'name'
+    }
+  });
+});
+</script>
+</div>
+</div>
+    <div class="ui vertical footer segment" style="margin-top: 15px; ">
+      <div class="ui center aligned container">
+        <span style="color: #999;">FAIOJ Powered by <a href="https://github.com/FaiOJ/syzoj" target="_blank">SYZOJ</a>.</span>
+        <br>
+        <img src="https://cdn.jsdelivr.net/gh/novaELLIAS/CDN_for_ND/img/cn_icp.png" style="width:18px;height:18px;margin-bottom:-3px" alt="MOE ICP">
+        <a href="http://www.beian.miit.gov.cn/" target="_blank"> 辽ICP备20009666号-1</a>
+        丨
+        <img src="https://cdn.jsdelivr.net/gh/novaELLIAS/CDN_for_ND/img/moeicp.png" style="width:18px;height:18px;margin-bottom:-3px" alt="MOE ICP">
+<a href="https://icp.gov.moe" target="_blank">MOE ICP </a><a href="https://icp.gov.moe/?keyword=20201096" target="_blank"> 20201096号</a>
+      </div>
+    </div>
+</div>
+<script data-cfasync="false" src="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/cdnjs/semantic-ui/2.4.1/semantic.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/cdnjs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/self/script.js?20170710"></script>
+</body>
+</html>
+
